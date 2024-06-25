@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.11.3
 
@@ -16,5 +16,4 @@ jobs:
         run: python -m pip install --upgrade pip pytest
 
       - name: Test with unittest
-        working-directory: ./SEO-PROJECT1
         run: python3 -m unittest test_project.py

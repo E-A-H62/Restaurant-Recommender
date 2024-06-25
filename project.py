@@ -17,7 +17,8 @@ completion = client.chat.completions.create(
     messages=[
         {"role": "system", "content": "You can create organized datatables."},
         {"role": "user", "content": (
-            "Generate a table with 10 items. The data contains name, age, birthday, "
+            "Generate a table with 10 items. "
+            "The data contains name, age, birthday, "
             "and nationality."
         )}
     ]

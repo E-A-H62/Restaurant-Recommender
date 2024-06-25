@@ -1,23 +1,15 @@
 import pandas as pd
 import sqlalchemy as db
 import os
-import openai
 from openai import OpenAI
 
 # Retrieve the API key from the environment variable
 my_api_key = os.getenv('OPENAI_KEY')
 
-#TEST
-#print(my_api_key)
-
-print(os.getenv('OPENAI_KEY'))
-
 # Create an OpenAPI client using the key from our environment variable
 client = OpenAI(
     api_key=my_api_key,
 )
-
-
 
 # Specify the model to use and the messages to send
 completion = client.chat.completions.create(
@@ -27,7 +19,7 @@ completion = client.chat.completions.create(
         {"role": "user", "content": "Generate a table with 10 items. The data contains name, age, birthday, and nationality."}
     ]
 )
-#print(completion.choices[0].message.content) 
+
 chat_response = completion.choices[0].message.content
 fake = users = [
   {"id": 1, "name": "Jane Doe", "email": "janedoe@email.com"},

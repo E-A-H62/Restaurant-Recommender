@@ -1,12 +1,10 @@
 import pandas as pd
 import sqlalchemy as db
 import os
-import openai
 from openai import OpenAI
 
 # Retrieve the API key from the environment variable
 my_api_key = os.getenv('OPENAI_KEY')
-
 # TEST
 # print(my_api_key)
 

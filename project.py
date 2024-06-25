@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import sqlalchemy as db
 from openai import OpenAI
 
 # Retrieve the API key from the environment variable
@@ -13,7 +14,7 @@ class Project:
                  table_name='table_name'):
         df = pd.DataFrame.from_dict(data)
         engine = db.create_engine(db_url)
-        df.to_sql(table_name, con=engine, 
+        df.to_sql(table_name, con=engine,
                   if_exists='replace', index=False)
         
         with engine.connect() as connection:
@@ -31,7 +32,7 @@ class Project:
             model="gpt-3.5-turbo",
             messages=[
             {"role": "system", "content": 
-             "You can create organized datatables."},
+            "You can create organized datatables."},
             {"role": "user", "content": (
             "Generate a table with 10 items. "
             "The data contains name, age, birthday, "

@@ -1,11 +1,7 @@
 import unittest
 import pandas as pd
-import sqlalchemy as db
 
-from unittest.mock import MagicMock
 from project import Project
-from openai import OpenAI
-
 
 
 class TestProject(unittest.TestCase):
@@ -27,3 +23,4 @@ class TestProject(unittest.TestCase):
         
         # Ensure the result DataFrame matches the expected DataFrame
         pd.testing.assert_frame_equal(result_df, expected_df)
+        

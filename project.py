@@ -11,8 +11,8 @@ my_api_key = os.getenv('OPENAI_KEY')
 class Project:
     @staticmethod
     def store_db(
-        data, 
-        db_url='sqlite:///data_base_name.db', 
+        data,
+        db_url='sqlite:///data_base_name.db',
         table_name='table_name'
     ):
         df = pd.DataFrame.from_dict(data)
@@ -33,7 +33,10 @@ class Project:
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You can create organized datatables."},
+                {
+                    "role": "system",
+                    "content": "You can create organized datatables."
+                },
                 {"role": "user", "content": (
                     "Generate a table with 10 items. "
                     "The data contains name, age, birthday, "
@@ -45,4 +48,3 @@ class Project:
         # Extract and return the content from the API response
         chat_response = completion.choices[0].message.content
         return chat_response
-

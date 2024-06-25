@@ -53,3 +53,4 @@ df.to_sql('table_name', con=engine, if_exists='replace', index=False)
 with engine.connect() as connection:
   query_result = connection.execute(db.text("SELECT * FROM table_name;")).fetchall()
   print(pd.DataFrame(query_result))
+

@@ -3,8 +3,10 @@ import os
 import sqlalchemy as db
 from openai import OpenAI
 
+
 # Retrieve the API key from the environment variable
 my_api_key = os.getenv('OPENAI_KEY')
+
 
 class Project:
     @staticmethod

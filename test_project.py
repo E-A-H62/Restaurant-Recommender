@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
-
 from project import Project
+
 
 class TestProject(unittest.TestCase):
 
@@ -22,3 +22,4 @@ class TestProject(unittest.TestCase):
 
         # Ensure the result DataFrame matches the expected DataFrame
         pd.testing.assert_frame_equal(result_df, expected_df)
+        

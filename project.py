@@ -1,19 +1,18 @@
 import pandas as pd
-import sqlalchemy as db
 import os
 from openai import OpenAI
 
 # Retrieve the API key from the environment variable
 my_api_key = os.getenv('OPENAI_KEY')
 
+
 class Project:
 
     @staticmethod
-    def store_db(data, db_url='sqlite:///data_base_name.db', 
+    def store_db(data, db_url='sqlite:///data_base_name.db',
                  table_name='table_name'):
         df = pd.DataFrame.from_dict(data)
         engine = db.create_engine(db_url)
-        
         df.to_sql(table_name, con=engine, 
                   if_exists='replace', index=False)
         
@@ -31,9 +30,11 @@ class Project:
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-            {"role": "system", "content": "You can create organized datatables."},
+            {"role": "system", "content": 
+             "You can create organized datatables."},
             {"role": "user", "content": (
-            "Generate a table with 10 items. The data contains name, age, birthday, "
+            "Generate a table with 10 items. "
+            "The data contains name, age, birthday, "
             "and nationality."
             )}
             ]

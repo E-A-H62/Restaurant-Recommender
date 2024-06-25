@@ -16,7 +16,10 @@ completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
         {"role": "system", "content": "You can create organized datatables."},
-        {"role": "user", "content": "Generate a table with 10 items. The data contains name, age, birthday, and nationality."}
+        {"role": "user", "content": (
+            "Generate a table with 10 items. The data contains name, age, birthday, "
+            "and nationality."
+        )}
     ]
 )
 
@@ -35,5 +38,7 @@ df.to_sql('table_name', con=engine, if_exists='replace', index=False)
 
 # Query and manipulate the database
 with engine.connect() as connection:
-  query_result = connection.execute(db.text("SELECT * FROM table_name;")).fetchall()
-  print(pd.DataFrame(query_result))
+    query_result = connection.execute(
+      db.text("SELECT * FROM table_name;")
+    ).fetchall()
+    print(pd.DataFrame(query_result))

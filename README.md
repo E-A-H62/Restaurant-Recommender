@@ -20,7 +20,9 @@ Hello, in this project, we use the OPENAI API to post and request data in order 
 ## Languages Used:
 
 - Python
+- SQL
 - HTML
+- CSS
 
 ## Code Explained
 

@@ -16,8 +16,9 @@ def home():
 def submit_data():
     age = request.form["age"]
     cuisine = request.form["cuisine"]
-    df = Project.generate_chat(my_api_key, age, cuisine)
+    df = Project.get_recs(my_api_key, age, cuisine)
     return df.to_html()
+
 
 
 if __name__ == '__main__':

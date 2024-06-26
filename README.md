@@ -15,6 +15,7 @@ Hello, in this project, we use the OPENAI API to post and request data in order 
 - OpenAI
 - Unittest
 - Coverage
+- Scripts
 
 ## Code Explained
 

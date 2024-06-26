@@ -10,7 +10,7 @@ my_api_key = os.getenv('OPENAI_KEY')
 
 
 class Project:
-    @staticmethod
+
     def store_db(
         data,
         db_url='sqlite:///data_base_name.db',
@@ -26,7 +26,6 @@ class Project:
             ).fetchall()
             return pd.DataFrame(query_result)
 
-    @staticmethod
     def generate_chat(api_key):
         # Create an OpenAI client using the provided API key
         client = OpenAI(api_key=api_key)
@@ -55,7 +54,6 @@ class Project:
         chat_response = completion.choices[0].message.content
         return chat_response
 
-    @staticmethod
     def get_recs(api_key):
         # Generate chat response
         chat_response = Project.generate_chat(api_key)
@@ -71,4 +69,4 @@ class Project:
         return df
 
 
-print(Project.get_recs(my_api_key))
+# print(Project.get_recs(my_api_key))

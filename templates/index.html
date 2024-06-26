@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Flask App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to our Restaurant Recommender</h1>
+        <form action="{{ url_for('submit_data') }}" method="post">
+            <label for="name_text">Name:</label>
+            <input type="text" id="name_text" name="name">
+
+            <label for="age_number">Age:</label>
+            <input type="number" id="age_number" name="age" min="0" max="120" step="1">
+
+            <label for="feelings_text">How are you Feeling?</label>
+            <input type="text" id="feelings_text" name="feelings">
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

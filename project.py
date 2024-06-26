@@ -26,7 +26,7 @@ class Project:
             ).fetchall()
             return pd.DataFrame(query_result)
 
-    def generate_chat(api_key):
+    def generate_chat(api_key, age, cuisine):
         # Create an OpenAI client using the provided API key
         client = OpenAI(api_key=api_key)
 
@@ -39,6 +39,7 @@ class Project:
                     "content": "You know about popular restaurants."
                 },
                 {"role": "user", "content": (
+                    f"I am {age} years old and am interested in {cuisine} cuisine"
                     "Generate a JSON formatted table with 10 items. "
                     "The data contains the name of the restaurant "
                     "and its rating (0-5 stars)."
@@ -54,9 +55,9 @@ class Project:
         chat_response = completion.choices[0].message.content
         return chat_response
 
-    def get_recs(api_key):
+    def get_recs(api_key, age, cuisine):
         # Generate chat response
-        chat_response = Project.generate_chat(api_key)
+        chat_response = Project.generate_chat(api_key, age, cuisine)
 
         # Parse JSON response
         data = json.loads(chat_response)

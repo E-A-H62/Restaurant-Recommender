@@ -11,14 +11,19 @@ my_api_key = os.getenv('OPENAI_KEY')
 
 class Project:
 
-    def store_db(
-        data,
-        db_url='sqlite:///data_base_name.db',
-        table_name='table_name'
-    ):
+    @staticmethod
+    def store_db(data, db_url='sqlite:///data_base_name.db', table_name='table_name'):
         df = pd.DataFrame.from_dict(data)
         engine = db.create_engine(db_url)
-        df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+        
+        try:
+            df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+        except DatabaseError:
+            # Handle database errors such as malformed database
+            # For simplicity, let's recreate the database if it's corrupted
+            os.remove('data_base_name.db')
+            engine = db.create_engine(db_url)
+            df.to_sql(table_name, con=engine, if_exists='replace', index=False)
 
         with engine.connect() as connection:
             query_result = connection.execute(

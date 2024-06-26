@@ -17,6 +17,11 @@ Hello, in this project, we use the OPENAI API to post and request data in order 
 - Coverage
 - Scripts
 
+## Languages Used:
+
+- Python
+- HTML
+
 ## Code Explained
 
 ```python

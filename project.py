@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import json
 import sqlalchemy as db
 from openai import OpenAI
 
@@ -25,6 +26,7 @@ class Project:
             ).fetchall()
             return pd.DataFrame(query_result)
 
+    @staticmethod
     def generate_chat(api_key):
         # Create an OpenAI client using the provided API key
         client = OpenAI(api_key=api_key)
@@ -38,9 +40,13 @@ class Project:
                     "content": "You know about popular restaurants."
                 },
                 {"role": "user", "content": (
-                    "Generate a table with 10 items. "
+                    "Generate a JSON formatted table with 10 items. "
                     "The data contains the name of the restaurant "
                     "and its rating (0-5 stars)."
+                    "Rank the restaurants in descending order "
+                    "with the highest ratings at the top."
+                    "The format should follow something like: "
+                    "{'restaurants': [{'name': 'name', 'rating': rating}]}"
                 )}
             ]
         )
@@ -48,3 +54,21 @@ class Project:
         # Extract and return the content from the API response
         chat_response = completion.choices[0].message.content
         return chat_response
+
+    @staticmethod
+    def get_recs(api_key):
+        # Generate chat response
+        chat_response = Project.generate_chat(api_key)
+
+        # Parse JSON response
+        data = json.loads(chat_response)
+
+        # Store data in the database and print the resulting dataframe
+        first_key = list(data.keys())[0]
+        restaurant_data = data[first_key]
+        df = Project.store_db(restaurant_data)
+
+        return df
+
+
+print(Project.get_recs(my_api_key))

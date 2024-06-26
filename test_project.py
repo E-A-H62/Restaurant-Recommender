@@ -45,9 +45,13 @@ class TestProject(unittest.TestCase):
                 {"role": "system", "content":
                  "You know about popular restaurants."},
                 {"role": "user", "content": (
-                    "Generate a table with 10 items. "
+                    "Generate a JSON formatted table with 10 items. "
                     "The data contains the name of the restaurant "
                     "and its rating (0-5 stars)."
+                    "Rank the restaurants in descending order "
+                    "with the highest ratings at the top."
+                    "The format should follow something like: "
+                    "{'restaurants': [{'name': 'name', 'rating': rating}]}"
                 )}
             ]
         )

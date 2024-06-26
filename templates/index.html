@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Flask App</title>
+    <title>Restaurant Recommender</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
 </head>
@@ -10,14 +11,15 @@
     <div class="container">
         <h1>Welcome to our Restaurant Recommender</h1>
         <form action="{{ url_for('submit_data') }}" method="post">
-
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" min="0" max="120" step="1">
-
-            <label for="cuisine">What type of cuisine sounds good?</label>
-            <input type="text" id="cuisine" name="cuisine">
-
-            <button type="submit">Submit</button>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" class="form-control" id="age" name="age" min="0" max="120" step="1">
+            </div>
+            <div class="form-group">
+                <label for="cuisine">What type of cuisine sounds good?</label>
+                <input type="text" class="form-control" id="cuisine" name="cuisine">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </body>

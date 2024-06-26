@@ -18,7 +18,10 @@ def submit_data():
     age = request.form["age"]
     cuisine = request.form["cuisine"]
     df = Project.get_recs(my_api_key, age, cuisine)
-    return df.to_html()
+    return render_template(
+        "results.html", tables=[
+            df.to_html(classes='table table-striped',
+                       index=False)], titles=df.columns.values)
 
 
 if __name__ == '__main__':

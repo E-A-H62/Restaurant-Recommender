@@ -43,11 +43,11 @@ class TestProject(unittest.TestCase):
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content":
-                 "You can create organized datatables."},
+                 "You know about popular restaurants."},
                 {"role": "user", "content": (
                     "Generate a table with 10 items. "
-                    "The data contains name, age, birthday, "
-                    "and nationality."
+                    "The data contains the name of the restaurant "
+                    "and its rating (0-5 stars)."
                 )}
             ]
         )

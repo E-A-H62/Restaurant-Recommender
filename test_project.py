@@ -25,7 +25,7 @@ class TestProject(unittest.TestCase):
         pd.testing.assert_frame_equal(result_df, expected_df)
 
     @patch('project.OpenAI')
-    def test_generate_chat(self, mock_openai):
+    def test_generate_chat(self, mock_openai, age=19, cuisine="Italian"):
         # Mock the OpenAI client and its methods
         mock_client = MagicMock()
         mock_completion = MagicMock()
@@ -35,7 +35,8 @@ class TestProject(unittest.TestCase):
         mock_client.chat.completions.create.return_value = mock_completion
         mock_openai.return_value = mock_client
         # Call the method under test
-        response = Project.generate_chat('dummy_api_key')
+        response = Project.generate_chat('dummy_api_key',
+                                         age=19, cuisine="Italian")
         # Assertions
         self.assertEqual(response, 'mocked chat response')
         mock_openai.assert_called_once_with(api_key='dummy_api_key')
@@ -45,13 +46,15 @@ class TestProject(unittest.TestCase):
                 {"role": "system", "content":
                  "You know about popular restaurants."},
                 {"role": "user", "content": (
+                    f"I am {age} years old and "
+                    f"am interested in {cuisine} cuisine"
                     "Generate a JSON formatted table with 10 items. "
                     "The data contains the name of the restaurant "
                     "and its rating (0-5 stars)."
                     "Rank the restaurants in descending order "
                     "with the highest ratings at the top."
                     "The format should follow something like: "
-                    "{'restaurants': [{'name': 'name', 'rating': rating}]}"
+                    "{'restaurants': [{'Name': 'name', 'Rating': rating}]}"
                 )}
             ]
         )

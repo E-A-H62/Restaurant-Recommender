@@ -39,14 +39,15 @@ class Project:
                     "content": "You know about popular restaurants."
                 },
                 {"role": "user", "content": (
-                    f"I am {age} years old and am interested in {cuisine} cuisine"
+                    f"I am {age} years old and "
+                    f"am interested in {cuisine} cuisine"
                     "Generate a JSON formatted table with 10 items. "
                     "The data contains the name of the restaurant "
                     "and its rating (0-5 stars)."
                     "Rank the restaurants in descending order "
                     "with the highest ratings at the top."
                     "The format should follow something like: "
-                    "{'restaurants': [{'name': 'name', 'rating': rating}]}"
+                    "{'restaurants': [{'Name': 'name', 'Rating': rating}]}"
                 )}
             ]
         )
@@ -66,8 +67,11 @@ class Project:
         first_key = list(data.keys())[0]
         restaurant_data = data[first_key]
         df = Project.store_db(restaurant_data)
+        # Print DataFrame without index
+        blankIndex = [''] * len(df)
+        df.index = blankIndex
 
         return df
 
 
-# print(Project.get_recs(my_api_key))
+# print(Project.get_recs(my_api_key, 19, "Italian"))

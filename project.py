@@ -3,6 +3,7 @@ import os
 import json
 import sqlalchemy as db
 from openai import OpenAI
+from sqlite3 import DatabaseError
 
 
 # Retrieve the API key from the environment variable
@@ -12,10 +13,12 @@ my_api_key = os.getenv('OPENAI_KEY')
 class Project:
 
     @staticmethod
-    def store_db(data, db_url='sqlite:///data_base_name.db', table_name='table_name'):
+    def store_db(data,
+                 db_url='sqlite:///data_base_name.db',
+                 table_name='table_name'):
         df = pd.DataFrame.from_dict(data)
         engine = db.create_engine(db_url)
-        
+
         try:
             df.to_sql(table_name, con=engine, if_exists='replace', index=False)
         except DatabaseError:

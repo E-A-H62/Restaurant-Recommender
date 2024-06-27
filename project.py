@@ -58,7 +58,9 @@ class Project:
                     "Rank the restaurants in descending order "
                     "with the highest ratings at the top."
                     "The format should follow something like: "
-                    "{'restaurants': [{'Name': 'name', 'Adress': adress, 'Website': website, 'Rating(0-5)': rating}]}"
+                    "{'restaurants': "
+                    "[{'Name': 'name', 'Adress': adress, "
+                    "'Website': website, 'Rating(0-5)': rating}]}"
                 )}
             ]
         )
@@ -77,7 +79,7 @@ class Project:
         # Store data in the database and print the resulting dataframe
         first_key = list(data.keys())[0]
         restaurant_data = data[first_key]
-        
+
         df = Project.store_db(restaurant_data)
         # Print DataFrame without index
         blankIndex = [''] * len(df)

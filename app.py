@@ -17,7 +17,8 @@ def home():
 def submit_data():
     age = request.form["age"]
     cuisine = request.form["cuisine"]
-    df = Project.get_recs(my_api_key, age, cuisine)
+    location = request.form["location"]
+    df = Project.get_recs(my_api_key, age, cuisine, location)
     return render_template(
         "results.html", tables=[
             df.to_html(classes='table table-striped',

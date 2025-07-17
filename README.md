@@ -4,7 +4,6 @@
 
 Elena Hernandez and Bryson Turner
 
-
 ## Table of Contents
 - [Introduction](#introduction)
 - [Usage](#usage)
